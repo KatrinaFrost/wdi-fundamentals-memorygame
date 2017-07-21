@@ -1,34 +1,92 @@
-console.log("Up and running!");
+console.log('Up and running!');
 
-//var cardOne = "queen";
-//var cardTwo = "king";
-//var cardThree = "queen";
-//var cardFour = "king"; unit 7 assignment
+var cards = [
+  {
+    rank: 'queen',
+    suit: 'hearts',
+    cardImage: 'images/queen-of-hearts.png'
+  },
+  {
+    rank: 'queen',
+    suit: 'diamonds',
+    cardImage: 'images/queen-of-diamonds.png'
+  },
+  {
+    rank: 'king',
+    suit: 'hearts',
+    cardImage: 'images/king-of-hearts.png'
+  },
+  {
+    rank: 'king',
+    suit: 'diamonds',
+    cardImage: 'images/king-of-diamonds.png'
+  }
+];
 
-console.log("user flipped" + cardOne);
-
-var cards = ["queen", "queen", "king", "king"];
+// create array to store cards
 var cardsInPlay = [];
-var cardOne = cards[0];
+var score = 0;
 
-cardsInPlay.push(cardOne);
+var flipCard = function () {
 
-console.log("user flipped " + cardOne);
+  var cardId = this.getAttribute('data-id');
+  this.setAttribute('src', cards[cardId].cardImage);
 
-var cardTwo = cards[1];
-cardsInPlay.push(cardTwo);
+  console.log('User flipped ' + cards[cardId].rank);
+  console.log(cards[cardId].cardImage);
+  console.log(cards[cardId].suit);
 
-console.log("user flipped " + cardTwo);
+  cardsInPlay.push(cards[cardId].rank);
 
+  checkForMatch();
+};
 
+//start function - createBoard
+var createBoard = function(){
 
-if (cardsInPlay.length === 2) //if statement
-{
-  console.log("you have selected two cards");
+  for (var i = 0; i < cards.length; i++) {
 
-  if (cardsInPlay[0] === cardsInPlay[1]) {
-     alert("You found a match!");
-   } else {
-     alert("Sorry, try again");
-   }
+    var cardElement = document.createElement('img');
+
+    cardElement.setAttribute('src', 'images/back.png');
+    cardElement.setAttribute('data-id', i);
+    cardElement.addEventListener('click', flipCard);
+    document.getElementById('game-board').appendChild(cardElement);
+  }
+};
+
+// check for a match
+function checkForMatch() {
+
+  if (cardsInPlay.length === 2) {
+
+  } else if (cardsInPlay[0] === cardsInPlay[1]) {
+
+    alert('You found a match!');
+
+    updateScore();
+
+  } else {
+
+    alert('Sorry try again');
+  }
+};
+
+function updateScore(){
+
+  score ++;
+  document.getElementById('score-board').innerHTML = score;
 }
+
+function reset(){
+
+  cardsInPlay = []; // stores the cards that have been turned
+
+  var cardElements = document.getElementById('game-board').children; // creating a ref to the cards
+
+  for (var i = 0; i < cardElements.length; i++) {
+      cardElements[i].setAttribute('src', 'images/back.png');
+  }
+};
+
+createBoard();

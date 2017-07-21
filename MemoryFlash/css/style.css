@@ -6,9 +6,9 @@ html, body
 
 header
 {
-background-color: #f15b31;
-padding: 30px 20px;
-margin: 0;
+  background-color: #f15b31;
+  padding: 30px 20px;
+  margin: 0;
 }
 
 h1
@@ -94,7 +94,7 @@ h5
 {
   font-family: "Droid Serif", serif;
   line-height: 26px;
-  font-size: 18px;  
+  font-size: 18px;
 }
 
 footer {
@@ -105,6 +105,17 @@ footer {
   font-size: 14px;
   letter-spacing: .08em;
   font-weight: 500;
+  }
+
+button {
+  background-color: #f15b31;
+  margin: 0;
+  border-radius: 12px;
+  padding: 15px 32px;
+  font-weight: 900;
+  font-size: 100px
+  font-family: "Raleway", sans-serif;
+
   }
 
 .copyright {
